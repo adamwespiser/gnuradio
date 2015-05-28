@@ -1,0 +1,41 @@
+# device location (G-50-45)
+plughw:0,0
+/dev/swradio0
+<<<<<<< HEAD
+
+
+# install notes:
+http://www.rs-online.com/designspark/electronics/eng/blog/taking-the-raspberry-pi-2-for-a-test-drive-with-gnu-radio-2
+
+# test rtl-sdr
+sudo rmmod dvb_usb_rtl28xxu rtl2832 
+861@home:gr-baz$ rtl_test
+
+
+# get fm radio to work on the command line:
+rtl_fm -f 104.5M -s 192000 -r 48000 - | aplay -r 48k -f S16_LE -t raw -c 1
+
+# need to install RTL-SDR module for gnuradio
+https://github.com/osmocom/gr-osmosdr
+
+
+# make device available for non-root users:
+
+lsusb
+
+The last line was the Realtek dongle:
+Bus 001 Device 008: ID 0bda:2838 Realtek Semiconductor Corp.
+
+The important parts are "0bda" (the vendor id) and "2838" (the product id).
+
+Create a new file as root named /etc/udev/rules.d/20.rtlsdr.rules that contains the following line:
+
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", GROUP="adm", MODE="0666", SYMLINK+="rtl_sdr"
+
+
+||||||| merged common ancestors
+=======
+
+
+https://wiki.ubuntu.com/ARM/RaspberryPi
+>>>>>>> a6baeaca278db18c833ab0142796359b4bfd6d2e
