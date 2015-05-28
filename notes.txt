@@ -1,2 +1,5 @@
 plughw:0,0
 /dev/swradio0
+
+
+https://wiki.ubuntu.com/ARM/RaspberryPi
