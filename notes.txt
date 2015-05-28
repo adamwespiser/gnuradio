@@ -1,0 +1,2 @@
+plughw:0,0
+/dev/swradio0
