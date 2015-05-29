@@ -1,3 +1,4 @@
+
 # device location (G-50-45)
 plughw:0,0
 /dev/swradio0
@@ -32,3 +33,14 @@ Create a new file as root named /etc/udev/rules.d/20.rtlsdr.rules that contains 
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", GROUP="adm", MODE="0666", SYMLINK+="rtl_sdr"
 
 
+# installition
+install gnuradio from source
+wget http://www.sbrac.org/files/build-gnuradio && chmod a+x ./build-gnuradio && ./build-gnuradio
+
+then install osmocom from source
+
+# blacklist modules
+https://lists.gnu.org/archive/html/discuss-gnuradio/2015-01/msg00160.html
+
+# problem readint rtl-sdr from gnuradio-companion
+https://lists.gnu.org/archive/html/discuss-gnuradio/2015-01/msg00160.html
