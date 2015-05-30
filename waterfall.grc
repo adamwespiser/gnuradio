@@ -85,7 +85,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>104.5e6</value>
+      <value>98e6</value>
     </param>
     <param>
       <key>comment</key>
@@ -238,7 +238,7 @@
     </param>
     <param>
       <key>args</key>
-      <value>rtl_tcp=127.0.0.1:1234</value>
+      <value></value>
     </param>
     <param>
       <key>sync</key>
@@ -338,7 +338,7 @@
     </param>
     <param>
       <key>gain_mode0</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>gain0</key>
@@ -358,7 +358,7 @@
     </param>
     <param>
       <key>bw0</key>
-      <value>15e5</value>
+      <value>0</value>
     </param>
     <param>
       <key>freq1</key>
