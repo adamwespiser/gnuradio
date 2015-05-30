@@ -1,0 +1,32 @@
+global stat gps reciever
+BU-353-S4
+
+
+
+sudo apt-get install gpsd-clients tangogps o
+
+
+
+# http://stackoverflow.com/questions/16435302/ubuntu-getting-gps-coordinates-from-dongle-bu-353
+sudo gpsctl -n /dev/ttyUSB0
+sudo stty -F /dev/ttyUSB0 ispeed 4800
+gpsd -b /dev/ttyUSB0
+
+
+# NMEA output format
+http://aprs.gids.nl/nmea/
+http://aprs.gids.nl/nmea/#gga
+
+
+# get gpsd to work 
+sudo gpsd -D 5 -N -n /dev/ttyUSB0
+
+# gpsdrive with device
+sudo gpsdrive -X /dev/ttyUSB0
+
+#foxtrotgps
+ run gpsd
+ $foxtrotgps
+
+# try viking
+https://apps.ubuntu.com/cat/applications/viking/
