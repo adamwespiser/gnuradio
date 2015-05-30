@@ -1,0 +1,6 @@
+#http://wifi.readthedocs.org/en/latest/scanning.html
+pip install wifi
+
+from wifi import Cell
+
+map(lambda x: x.address, Cell.all('wlan2'))
