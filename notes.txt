@@ -51,3 +51,18 @@ https://wiki.ubuntu.com/ARM/RaspberryPi
 # get the power of a band:
 http://kmkeen.com/rtl-power/
 
+# lTE tracking...
+http://www.evrytania.com/lte-tools/78-default-category/77-lte-cell-scanner
+751, 739
+CellSearch --freq-start 715e6 --freq-end 768e6
+A: #antenna ports C: CP type ; P: PHICH duration ; PR: PHICH resource type
+CID A      fc   foff RXPWR C nRB P  PR CrystalCorrectionFactor
+ 61 2    739M -22.5k -10.4 N  50 N one 0.99996960857128724953
+ 309 2    751M -22.9k  -9.6 N  50 N one 0.99996946109565076899
+
+
+# airplay adsb tracking:
+/home/adam/bin/dump1090/dump1090 --net --enable-agc
+http://www.airframes.org/
+A-DSB for dummies: file:///home/adam/Downloads/ADS-B%20for%20Dummies.pdf
+
