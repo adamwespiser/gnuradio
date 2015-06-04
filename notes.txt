@@ -66,6 +66,8 @@ CID A      fc   foff RXPWR C nRB P  PR CrystalCorrectionFactor
 http://www.airframes.org/
 A-DSB for dummies: file:///home/adam/Downloads/ADS-B%20for%20Dummies.pdf
 
+# state po bands
+https://www.radioreference.com/apps/db/?sid=736
 
 # worc police bands:
 http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
@@ -92,6 +94,16 @@ http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
 
 ## lee mass radio frequency
 https://www.radioreference.com/apps/db/?ctid=1214
+
+## worc airport
+https://www.radioreference.com/apps/db/?inputs=1&aid=7348#cats
+
+
+## gnuradio-companion
+fm radio = fm_example_works.grc
+narrow band(police scanner) = narrow2.grc
+AIRPORT RADIO = AIRBand_and_am.grc
+filtered TETRA = tetra_filter_low_pass.grc
 
 
 
