@@ -66,3 +66,45 @@ CID A      fc   foff RXPWR C nRB P  PR CrystalCorrectionFactor
 http://www.airframes.org/
 A-DSB for dummies: file:///home/adam/Downloads/ADS-B%20for%20Dummies.pdf
 
+
+# worc police bands:
+http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
+## found bands between 854 to 856 (fft on gnuradio ~ 10 mins)
+856.488
+855.964
+855.937
+855.714
+855.689
+855.463
+855.143
+854.862
+854.712
+854.438
+854.390
+854.190
+854.165
+854.113
+852.157
+852.133
+
+152.595
+
+
+## lee mass radio frequency
+https://www.radioreference.com/apps/db/?ctid=1214
+
+
+
+# monitering power:
+## website:
+http://kmkeen.com/rtl-power/
+## rtl_power output:
+date, time, Hz low, Hz high, Hz step, samples, dB, dB, dB, ...
+
+## example:
+rtl_power -f 88M:108M:125k fm_stations.csv
+python heatmap.py fm_stations.csv fm_stations.png
+
+## Quadrature Tutorial
+http://www.dspguru.com/sites/dspguru/files/QuadSignals.pdf
+
