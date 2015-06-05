@@ -48,6 +48,15 @@ https://lists.gnu.org/archive/html/discuss-gnuradio/2015-01/msg00160.html
 # raspberry pi 2 model B
 https://wiki.ubuntu.com/ARM/RaspberryPi
 
+
+# rtlsdr scan (gps support)
+/home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py
+(install build-gnuradio)
+git clone https://github.com/EarToEarOak/RTLSDR-Scanner.git
+sudo pip install pyrtlsdr
+? enable gps?
+
+
 # get the power of a band:
 http://kmkeen.com/rtl-power/
 
@@ -68,6 +77,7 @@ A-DSB for dummies: file:///home/adam/Downloads/ADS-B%20for%20Dummies.pdf
 
 # state po bands
 https://www.radioreference.com/apps/db/?sid=736
+http://scan-ne.net/wiki/index.php?title=Massachusetts_State_Police#Zone_10
 
 # worc police bands:
 http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
