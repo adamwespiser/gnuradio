@@ -19,7 +19,7 @@ http://aprs.gids.nl/nmea/#gga
 
 
 # get gpsd to work 
-sudo gpsd -D 5 -N -n /dev/ttyUSB0
+sudo killall gpsd && sudo gpsd -D 5 -N -n /dev/ttyUSB0 > /dev/null
 
 # gpsdrive with device
 sudo gpsdrive -X /dev/ttyUSB0
@@ -30,3 +30,7 @@ sudo gpsdrive -X /dev/ttyUSB0
 
 # try viking
 https://apps.ubuntu.com/cat/applications/viking/
+
+# navit
+routing?
+
