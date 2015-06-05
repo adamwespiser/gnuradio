@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="frame" version="1.1">
+	<trk>
+		<name>test name</name>
+		<trkseg>
+			<trkpt lat="42.274092625" lon="-71.785495181">
+				<ele>251.569</ele>
+				<time>2015-06-05T05:22:02Z</time>
+			</trkpt>
+		</trkseg>
+	</trk>
+</gpx>

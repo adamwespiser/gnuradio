@@ -34,12 +34,21 @@ run `gnuradio-companion`, then open:
 
 # HOWTO:GPS
 ### Enable gps
-`sudo gpsctl -n /dev/ttyUSB`    
+`sudo gpsctl -n /dev/ttyUSB0`    
 `sudo stty -F /dev/ttyUSB0 ispeed 4800`    
 `sudo gpsd -D 5 -N -n /dev/ttyUSB0 > /dev/null`
 
-### View position on map
+### print out coords
+`sudo awk -F"," '/GGA/ {print $3,$5}' /dev/ttyUSB0`    
+`sudo cat /dev/ttyUSB0  > ./data/gps.track.file`    
+
+### View position on map in realtime
 `foxtrotgps`
+`gpsdrive`
+
+### log and view gpx (saved coord info)
+`gpxlogger -f ./data/test.gpx`    
+`gpxviewer ./data/test.gpx`    
 
 ### Use radio monitering w/ gps:
 `/home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py`    
