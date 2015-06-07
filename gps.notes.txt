@@ -46,9 +46,29 @@ echo $gps_device
 sudo pgrep gpsd | xargs -I{} sudo kill -9 {}
 sudo stty -F $gps_device ispeed 4800
 sudo gpsctl -f -n $gps_device
-sudo gpsd  -b $gps_device
+sudo gpsd  -n -b $gps_device
 
 
 ===================
+
+
+#sync'ing system time with gps
+1) add the following to /etc/ntp.conf(see gpsd man page)
+           server 127.127.28.0
+           fudge 127.127.28.0 time1 0.420 refid GPS
+
+           server 127.127.28.1 prefer
+           fudge 127.127.28.1 refid GPS1
+2) restart ntp server
+sudo service ntp restart
+3) check the results:
+ntpq -p
+
+
+
+
+
+
+
 
 
