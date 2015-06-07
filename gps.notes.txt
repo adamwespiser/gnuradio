@@ -43,10 +43,11 @@ routing?
 export gps_device=$(ls /dev/ttyU*)
 echo $gps_device
 ### Enable gps
-sudo stty -F $gps_device ispeed 4800
 sudo pgrep gpsd | xargs -I{} sudo kill -9 {}
-sudo gpsctl -n $gps_device
-sudo gpsd -D 5 -N -n $gps_device 
+sudo stty -F $gps_device ispeed 4800
+sudo gpsctl -f -n $gps_device
+sudo gpsd  -b $gps_device
+
 
 ===================
 
