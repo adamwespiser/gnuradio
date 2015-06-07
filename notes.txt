@@ -51,6 +51,8 @@ https://wiki.ubuntu.com/ARM/RaspberryPi
 # overclocking rpi
 http://www.viclog.com/entry/running-xubuntu-with-xfce-4-12-on-an-overclocked-rpi-2
 
+#connecting pi w/ comp via eth cable
+http://askubuntu.com/questions/22835/how-to-network-two-ubuntu-computers-using-ethernet-without-a-router
 
 # rtlsdr scan (gps support)
 /home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py
