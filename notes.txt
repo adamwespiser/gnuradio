@@ -53,6 +53,18 @@ http://www.viclog.com/entry/running-xubuntu-with-xfce-4-12-on-an-overclocked-rpi
 
 #connecting pi w/ comp via eth cable
 http://askubuntu.com/questions/22835/how-to-network-two-ubuntu-computers-using-ethernet-without-a-router
+1) turn on rpi, without usb wifi card attached
+2) turn on network rpi_shared on g50
+3)ssh ubuntu@10.42.0.99
+4) connect wireless card, etc
+
+
+
+
+#connect to internet
+nmcli d wifi connect NETGEAR41 password happypotato683 iface wlan0
+
+
 
 # rtlsdr scan (gps support)
 /home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py
