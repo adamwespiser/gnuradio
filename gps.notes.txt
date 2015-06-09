@@ -52,6 +52,8 @@ sudo gpsd  -n -b $gps_device
 ===================
 
 
+# TIMING
+
 #sync'ing system time with gps
 1) add the following to /etc/ntp.conf(see gpsd man page)
            server 127.127.28.0
@@ -65,7 +67,10 @@ sudo service ntp restart
 ntpq -p
 
 
-
+# convert dates (format from rtl_power)
+date -d "2015-06-02 00:23:58" +%s
+=> to epoch time
+data -d @1433219038
 
 
 
