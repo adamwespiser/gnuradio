@@ -7,6 +7,7 @@ sudo apt-get install gpsd-clients tangogps o
 
 
 
+
 # http://stackoverflow.com/questions/16435302/ubuntu-getting-gps-coordinates-from-dongle-bu-353
 sudo gpsctl -n /dev/ttyUSB0
 sudo stty -F /dev/ttyUSB0 ispeed 4800
@@ -36,6 +37,8 @@ https://apps.ubuntu.com/cat/applications/viking/
 # navit
 routing?
 
+# automatically run script when usb is plugged in:
+http://askubuntu.com/questions/284224/autorun-a-script-after-i-plugged-or-unplugged-a-usb-device
 
 ===================================
 #!/bin/bash
