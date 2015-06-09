@@ -7,4 +7,8 @@ stamp=$(date)
 unixEpoch=$(date +%s)
 
 
-echo CPU temp"="$cpuTemp1"."$cpuTempM"'C"
+#echo CPU temp"="$cpuTemp1"."$cpuTempM"'C"
+
+fmtTmp=$cpuTemp1"."$cpuTempM
+output=$fmtTmp",C,"$stamp","$unixEpoch
+echo $output
