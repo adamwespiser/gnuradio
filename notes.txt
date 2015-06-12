@@ -135,8 +135,14 @@ http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
 
 
 
+
+
 ## lee mass radio frequency
 https://www.radioreference.com/apps/db/?ctid=1214
+
+## Lee Mass radio tower:
+42.219010, -73.266041
+
 
 ## worc airport
 https://www.radioreference.com/apps/db/?inputs=1&aid=7348#cats
