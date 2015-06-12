@@ -70,6 +70,13 @@ ______________________
 | -------  |3 |  |5 | |
 |          ''''  '''' |
 ''''''''''''''''''''''
+
+# Device test conditions:
+
+belkin 1 -> 4 USB: wifi, usb mem, rtl_sdr = faildd
+belkin 1 -> 4 USB: wifi, usb mem, main usb hub -> rtl_sdr == faildd
+
+
 # rtlsdr scan (gps support)
 /home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py
 (install build-gnuradio)
