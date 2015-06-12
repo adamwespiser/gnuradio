@@ -59,13 +59,17 @@ http://askubuntu.com/questions/22835/how-to-network-two-ubuntu-computers-using-e
 4) connect wireless card, etc
 
 
-
-
 #connect to internet
 nmcli d wifi connect NETGEAR41 password happypotato683 iface wlan0
 
-
-
+# usb port numbers 
+______________________
+|                     | 
+| -------  |2 |  |4 | |
+| | eth |  ''''  '''' |
+| -------  |3 |  |5 | |
+|          ''''  '''' |
+''''''''''''''''''''''
 # rtlsdr scan (gps support)
 /home/adam/bin/RTLSDR-Scanner/src/rtlsdr_scan.py
 (install build-gnuradio)
