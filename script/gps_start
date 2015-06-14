@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export gps_device=$(ls /dev/ttyU*)
+echo $gps_device
+### Enable gps
+sudo pgrep gpsd | xargs -I{} sudo kill -9 {}
+sudo stty -F $gps_device ispeed 4800
+sudo gpsctl -f -n $gps_device
+sudo gpsd -n  -b $gps_device
+
