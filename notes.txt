@@ -180,3 +180,8 @@ python heatmap.py fm_stations.csv fm_stations.png
 ## Quadrature Tutorial
 http://www.dspguru.com/sites/dspguru/files/QuadSignals.pdf
 
+## us navy electricians(radio, modulation, etc) training guide:
+http://jacquesricher.com/NEETS/#
+
+
+
