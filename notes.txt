@@ -84,9 +84,18 @@ git clone https://github.com/EarToEarOak/RTLSDR-Scanner.git
 sudo pip install pyrtlsdr
 ? enable gps?
 
+# rtl-sdr history/discovery:
+http://comments.gmane.org/gmane.linux.drivers.video-input-infrastructure/44461
+http://rtlsdr.org/#history_and_discovery_of_rtlsdr
+
+# hexdump  -n 100 -e '2/1 "%02u " "\n"'  rtl2832u_fm_sample_FIXED.bin
+
 
 # get the power of a band:
 http://kmkeen.com/rtl-power/
+
+# python rtl-sdr
+https://github.com/roger-/pyrtlsdr/tree/master/rtlsdr
 
 # lTE tracking...
 http://www.evrytania.com/lte-tools/78-default-category/77-lte-cell-scanner
@@ -173,6 +182,9 @@ http://kmkeen.com/rtl-power/
 ## rtl_power output:
 date, time, Hz low, Hz high, Hz step, samples, dB, dB, dB, ...
 
+
+
+
 ## example:
 rtl_power -f 88M:108M:125k fm_stations.csv
 python heatmap.py fm_stations.csv fm_stations.png
@@ -183,5 +195,6 @@ http://www.dspguru.com/sites/dspguru/files/QuadSignals.pdf
 ## us navy electricians(radio, modulation, etc) training guide:
 http://jacquesricher.com/NEETS/#
 
-
+## IQ demonstation
+http://whiteboard.ping.se/SDR/IQ
 

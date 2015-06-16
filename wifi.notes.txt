@@ -4,3 +4,7 @@ pip install wifi
 from wifi import Cell
 
 map(lambda x: x.address, Cell.all('wlan2'))
+
+
+#scapy ex.
+https://github.com/DanMcInerney/wifijammer/blob/master/wifijammer.py
