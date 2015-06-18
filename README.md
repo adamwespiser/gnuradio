@@ -1,6 +1,8 @@
 # gnuradio
 gnu radio files
 
+# Coursera DSP
+https://www.coursera.org/course/dsp
 
 # HOWTO: Radio
 ###use rtl-sdr
