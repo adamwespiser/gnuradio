@@ -90,6 +90,11 @@ http://rtlsdr.org/#history_and_discovery_of_rtlsdr
 
 # hexdump  -n 100 -e '2/1 "%02u " "\n"'  rtl2832u_fm_sample_FIXED.bin
 
+# downsample via hexdump
+rtl_sdr -S -f 154750000  - |  hexdump  -e '8/1 "%02u " "\n"' | cut -d ' ' -f 1,2
+# downsample to 32k, look into xdd to turn back into hex
+rtl_sdr -s 256000 -S -f 154750000 - | hexdump  -e '16/1 "%02u " "\n"' | cut -d ' ' -f 1,2 > lee_32k_s.iq.space
+
 
 # get the power of a band:
 http://kmkeen.com/rtl-power/
