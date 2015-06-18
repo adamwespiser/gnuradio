@@ -3,7 +3,7 @@
 # GNU Radio Python Flow Graph
 # Title: OSMOSDR NFM RX
 # Description: https://apollo.open-resource.org/mission:log:2012:05:06:rtlsdr-osmosdr-gnuradio-fm-receiver
-# Generated: Fri Jun  5 09:35:53 2015
+# Generated: Thu Jun 18 14:03:33 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -21,9 +21,12 @@ from gnuradio import audio
 from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
+from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
+from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio.wxgui import forms
+from gnuradio.wxgui import waterfallsink2
 from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
 import osmosdr
@@ -41,13 +44,13 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 2400000
-        self.rx_freq = rx_freq = 854.388e6
+        self.rx_freq = rx_freq = 154750000
         self.rx_fine = rx_fine = 0
         self.rx_coarse = rx_coarse = 0
         self.xlate_filter_taps = xlate_filter_taps = firdes.low_pass(1, samp_rate, 125000, 25000, firdes.WIN_HAMMING, 6.76)
         self.width = width = 12500
         self.variable_chooser_1 = variable_chooser_1 = 1
-        self.tv_freq = tv_freq = 500.25e6
+        self.tv_freq = tv_freq = 157.7e6
         self.trans = trans = 25000
         self.squelch = squelch = -55
         self.sql_lev = sql_lev = -20
@@ -144,77 +147,14 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         	sizer=_rx_freq_sizer,
         	value=self.rx_freq,
         	callback=self.set_rx_freq,
-        	minimum=840000000,
-        	maximum=860000000,
+        	minimum=140000000,
+        	maximum=160000000,
         	num_steps=1000,
         	style=wx.SL_HORIZONTAL,
         	cast=float,
         	proportion=1,
         )
         self.GridAdd(_rx_freq_sizer, 0, 0, 1, 16)
-        _dev_sizer = wx.BoxSizer(wx.VERTICAL)
-        self._dev_text_box = forms.text_box(
-        	parent=self.GetWin(),
-        	sizer=_dev_sizer,
-        	value=self.dev,
-        	callback=self.set_dev,
-        	label="NBFM deviation",
-        	converter=forms.float_converter(),
-        	proportion=0,
-        )
-        self._dev_slider = forms.slider(
-        	parent=self.GetWin(),
-        	sizer=_dev_sizer,
-        	value=self.dev,
-        	callback=self.set_dev,
-        	minimum=4000,
-        	maximum=16000,
-        	num_steps=24,
-        	style=wx.SL_HORIZONTAL,
-        	cast=float,
-        	proportion=1,
-        )
-        self.Add(_dev_sizer)
-        self._variable_chooser_1_chooser = forms.drop_down(
-        	parent=self.GetWin(),
-        	value=self.variable_chooser_1,
-        	callback=self.set_variable_chooser_1,
-        	label='variable_chooser_1',
-        	choices=[1, 2, 3],
-        	labels=[],
-        )
-        self.Add(self._variable_chooser_1_chooser)
-        _sql_lev_sizer = wx.BoxSizer(wx.VERTICAL)
-        self._sql_lev_text_box = forms.text_box(
-        	parent=self.GetWin(),
-        	sizer=_sql_lev_sizer,
-        	value=self.sql_lev,
-        	callback=self.set_sql_lev,
-        	label="SQL",
-        	converter=forms.float_converter(),
-        	proportion=0,
-        )
-        self._sql_lev_slider = forms.slider(
-        	parent=self.GetWin(),
-        	sizer=_sql_lev_sizer,
-        	value=self.sql_lev,
-        	callback=self.set_sql_lev,
-        	minimum=-100,
-        	maximum=100,
-        	num_steps=200,
-        	style=wx.SL_HORIZONTAL,
-        	cast=float,
-        	proportion=1,
-        )
-        self.GridAdd(_sql_lev_sizer, 1, 12, 1, 4)
-        self._rx_freq_val_static_text = forms.static_text(
-        	parent=self.GetWin(),
-        	value=self.rx_freq_val,
-        	callback=self.set_rx_freq_val,
-        	label="Receive",
-        	converter=forms.float_converter(),
-        )
-        self.GridAdd(self._rx_freq_val_static_text, 0, 16, 1, 1)
         _rx_fine_sizer = wx.BoxSizer(wx.VERTICAL)
         self._rx_fine_text_box = forms.text_box(
         	parent=self.GetWin(),
@@ -261,6 +201,83 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         	proportion=1,
         )
         self.GridAdd(_rx_coarse_sizer, 1, 0, 1, 4)
+        _dev_sizer = wx.BoxSizer(wx.VERTICAL)
+        self._dev_text_box = forms.text_box(
+        	parent=self.GetWin(),
+        	sizer=_dev_sizer,
+        	value=self.dev,
+        	callback=self.set_dev,
+        	label="NBFM deviation",
+        	converter=forms.float_converter(),
+        	proportion=0,
+        )
+        self._dev_slider = forms.slider(
+        	parent=self.GetWin(),
+        	sizer=_dev_sizer,
+        	value=self.dev,
+        	callback=self.set_dev,
+        	minimum=4000,
+        	maximum=16000,
+        	num_steps=24,
+        	style=wx.SL_HORIZONTAL,
+        	cast=float,
+        	proportion=1,
+        )
+        self.Add(_dev_sizer)
+        self.wxgui_waterfallsink2_1 = waterfallsink2.waterfall_sink_c(
+        	self.GetWin(),
+        	baseband_freq=rx_freq + rx_coarse + rx_fine,
+        	dynamic_range=100,
+        	ref_level=0,
+        	ref_scale=2.0,
+        	sample_rate=samp_rate,
+        	fft_size=512,
+        	fft_rate=15,
+        	average=False,
+        	avg_alpha=None,
+        	title="Waterfall Plot",
+        )
+        self.Add(self.wxgui_waterfallsink2_1.win)
+        self._variable_chooser_1_chooser = forms.drop_down(
+        	parent=self.GetWin(),
+        	value=self.variable_chooser_1,
+        	callback=self.set_variable_chooser_1,
+        	label='variable_chooser_1',
+        	choices=[1, 2, 3],
+        	labels=[],
+        )
+        self.Add(self._variable_chooser_1_chooser)
+        _sql_lev_sizer = wx.BoxSizer(wx.VERTICAL)
+        self._sql_lev_text_box = forms.text_box(
+        	parent=self.GetWin(),
+        	sizer=_sql_lev_sizer,
+        	value=self.sql_lev,
+        	callback=self.set_sql_lev,
+        	label="SQL",
+        	converter=forms.float_converter(),
+        	proportion=0,
+        )
+        self._sql_lev_slider = forms.slider(
+        	parent=self.GetWin(),
+        	sizer=_sql_lev_sizer,
+        	value=self.sql_lev,
+        	callback=self.set_sql_lev,
+        	minimum=-100,
+        	maximum=100,
+        	num_steps=200,
+        	style=wx.SL_HORIZONTAL,
+        	cast=float,
+        	proportion=1,
+        )
+        self.GridAdd(_sql_lev_sizer, 1, 12, 1, 4)
+        self._rx_freq_val_static_text = forms.static_text(
+        	parent=self.GetWin(),
+        	value=self.rx_freq_val,
+        	callback=self.set_rx_freq_val,
+        	label="Receive",
+        	converter=forms.float_converter(),
+        )
+        self.GridAdd(self._rx_freq_val_static_text, 0, 16, 1, 1)
         self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + "" )
         self.rtlsdr_source_0.set_time_now(osmosdr.time_spec_t(time.time()), osmosdr.ALL_MBOARDS)
         self.rtlsdr_source_0.set_sample_rate(samp_rate)
@@ -316,6 +333,7 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         self.connect((self.analog_simple_squelch_cc_0, 0), (self.analog_nbfm_rx_0, 0))    
         self.connect((self.low_pass_filter_0, 0), (self.analog_simple_squelch_cc_0, 0))    
         self.connect((self.rtlsdr_source_0, 0), (self.low_pass_filter_0, 0))    
+        self.connect((self.rtlsdr_source_0, 0), (self.wxgui_waterfallsink2_1, 0))    
 
 
     def get_samp_rate(self):
@@ -326,6 +344,7 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         self.set_xlate_filter_taps(firdes.low_pass(1, self.samp_rate, 125000, 25000, firdes.WIN_HAMMING, 6.76))
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.width, self.trans, firdes.WIN_HAMMING, 6.76))
+        self.wxgui_waterfallsink2_1.set_sample_rate(self.samp_rate)
 
     def get_rx_freq(self):
         return self.rx_freq
@@ -336,6 +355,7 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         self.rtlsdr_source_0.set_center_freq(self.rx_freq, 0)
         self._rx_freq_slider.set_value(self.rx_freq)
         self._rx_freq_text_box.set_value(self.rx_freq)
+        self.wxgui_waterfallsink2_1.set_baseband_freq(self.rx_freq + self.rx_coarse + self.rx_fine)
 
     def get_rx_fine(self):
         return self.rx_fine
@@ -345,6 +365,7 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         self.set_rx_freq_val(self.rx_freq+(self.rx_coarse+self.rx_fine))
         self._rx_fine_slider.set_value(self.rx_fine)
         self._rx_fine_text_box.set_value(self.rx_fine)
+        self.wxgui_waterfallsink2_1.set_baseband_freq(self.rx_freq + self.rx_coarse + self.rx_fine)
 
     def get_rx_coarse(self):
         return self.rx_coarse
@@ -354,6 +375,7 @@ class osmo_nfm_rx(grc_wxgui.top_block_gui):
         self.set_rx_freq_val(self.rx_freq+(self.rx_coarse+self.rx_fine))
         self._rx_coarse_slider.set_value(self.rx_coarse)
         self._rx_coarse_text_box.set_value(self.rx_coarse)
+        self.wxgui_waterfallsink2_1.set_baseband_freq(self.rx_freq + self.rx_coarse + self.rx_fine)
 
     def get_xlate_filter_taps(self):
         return self.xlate_filter_taps

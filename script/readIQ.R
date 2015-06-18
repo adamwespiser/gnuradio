@@ -57,8 +57,9 @@ freq = maxIndex * (40/1024)
 
 
 
-
-
+x = runif(1024)
+plot(Re(fft(x)),col="black")
+lines(Re(fft(mn(x))),col="blue")
 
 
 

@@ -164,6 +164,18 @@ https://www.radioreference.com/apps/db/?ctid=1214
 42.219010, -73.266041
 
 
+## rtl_fm police scanner:
+rtl_fm -N -E -f 154.75M -f 153.95 -s 12k -o 4 -g 49.2 -l 70 | play -r 12k -t raw -e signed-integer -b 16 -c 1 -V1 -
+-N narrowband fm demod
+-E use edge, instead of center scanning
+-f frequency
+-s sample rate 
+-o over sample
+-g gain
+-l squelch(db lower db cutoff to hear sound)
+
+note -> add additional '-f' arguments to scan multiple stations
+
 ## worc airport
 https://www.radioreference.com/apps/db/?inputs=1&aid=7348#cats
 

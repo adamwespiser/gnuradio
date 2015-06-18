@@ -2,7 +2,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Fri Jun  5 02:45:09 2015
+# Generated: Thu Jun 18 03:54:17 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -16,7 +16,6 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from gnuradio import eng_notation
-from gnuradio import filter
 from gnuradio import gr
 from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
@@ -41,7 +40,7 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Variables
         ##################################################
-        self.frequency = frequency = 96100000
+        self.frequency = frequency = 154100000
         self.samp_rate = samp_rate = 2e6
         self.freq = freq = frequency
 
@@ -63,28 +62,14 @@ class top_block(grc_wxgui.top_block_gui):
         	sizer=_freq_sizer,
         	value=self.freq,
         	callback=self.set_freq,
-        	minimum=88000000,
-        	maximum=108000000,
+        	minimum=140000000,
+        	maximum=160000000,
         	num_steps=100,
         	style=wx.SL_HORIZONTAL,
         	cast=float,
         	proportion=1,
         )
         self.Add(_freq_sizer)
-        self.wxgui_waterfallsink2_2_0 = waterfallsink2.waterfall_sink_c(
-        	self.GetWin(),
-        	baseband_freq=freq,
-        	dynamic_range=100,
-        	ref_level=0,
-        	ref_scale=2.0,
-        	sample_rate=samp_rate,
-        	fft_size=512,
-        	fft_rate=15,
-        	average=False,
-        	avg_alpha=None,
-        	title="Waterfall Plot",
-        )
-        self.Add(self.wxgui_waterfallsink2_2_0.win)
         self.wxgui_waterfallsink2_2 = waterfallsink2.waterfall_sink_c(
         	self.GetWin(),
         	baseband_freq=freq,
@@ -126,16 +111,12 @@ class top_block(grc_wxgui.top_block_gui):
         self.rtlsdr_source_0.set_antenna("", 0)
         self.rtlsdr_source_0.set_bandwidth(0, 0)
           
-        self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
-        	1, samp_rate, 100e3, 1e6, firdes.WIN_HAMMING, 6.76))
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.low_pass_filter_0, 0), (self.wxgui_scopesink2_0, 0))    
-        self.connect((self.low_pass_filter_0, 0), (self.wxgui_waterfallsink2_2, 0))    
-        self.connect((self.rtlsdr_source_0, 0), (self.low_pass_filter_0, 0))    
-        self.connect((self.rtlsdr_source_0, 0), (self.wxgui_waterfallsink2_2_0, 0))    
+        self.connect((self.rtlsdr_source_0, 0), (self.wxgui_scopesink2_0, 0))    
+        self.connect((self.rtlsdr_source_0, 0), (self.wxgui_waterfallsink2_2, 0))    
 
 
     def get_frequency(self):
@@ -150,11 +131,9 @@ class top_block(grc_wxgui.top_block_gui):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.wxgui_scopesink2_0.set_sample_rate(self.samp_rate)
         self.wxgui_waterfallsink2_2.set_sample_rate(self.samp_rate)
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
-        self.wxgui_waterfallsink2_2_0.set_sample_rate(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 100e3, 1e6, firdes.WIN_HAMMING, 6.76))
+        self.wxgui_scopesink2_0.set_sample_rate(self.samp_rate)
 
     def get_freq(self):
         return self.freq
@@ -163,7 +142,6 @@ class top_block(grc_wxgui.top_block_gui):
         self.freq = freq
         self.wxgui_waterfallsink2_2.set_baseband_freq(self.freq)
         self.rtlsdr_source_0.set_center_freq(self.freq, 0)
-        self.wxgui_waterfallsink2_2_0.set_baseband_freq(self.freq)
         self._freq_slider.set_value(self.freq)
         self._freq_text_box.set_value(self.freq)
 
