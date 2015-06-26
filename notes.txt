@@ -121,6 +121,9 @@ A-DSB for dummies: file:///home/adam/Downloads/ADS-B%20for%20Dummies.pdf
 https://www.radioreference.com/apps/db/?sid=736
 http://scan-ne.net/wiki/index.php?title=Massachusetts_State_Police#Zone_10
 
+# worc po trunking info:
+http://www.scanworcester.com/FEEDS/
+
 # worc police bands:
 http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
 ## found bands between 854 to 856 (fft on gnuradio ~ 10 mins)
@@ -142,6 +145,8 @@ http://www.rfwiz.com/Frequencies/Massachusetts/MassWorcester.htm
 852.133
 
 152.595
+
+
 
 # worc fm stations
 88.1
